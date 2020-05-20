@@ -68,7 +68,7 @@ body {
 
 .update-button {
 	position: absolute;
-	top: 25px;
+	top: 100px;
 	right: 25px;
 	border: 1px solid grey;
 	padding: 5px 10px;
@@ -87,4 +87,9 @@ body {
 .movie-warning {
 	color: red;
 	text-align: center;
+}
+
+.button-container {
+	display: flex;
+	flex-direction: column;
 }

@@ -15,6 +15,16 @@ const UpdateMovie = (props) => {
      const { id } = useParams()
      const { push } = useHistory()
 
+     useEffect(() => {
+          axios
+               .get(`http://localhost:5000/api/movies/${id}`)
+               .then(response => {
+                    console.log(response)
+                    setMovie(response.data)
+               })
+     }, [id])
+
+
      const handleChange = event => {
           event.persist()
           let formValue = event.target.value
@@ -30,11 +40,13 @@ const UpdateMovie = (props) => {
 
      const handleSubmit = e => {
           e.preventDefault()
+          axios
+               .get(`http:localhost:5000/movies/${id}`)
      }
 
      return (
-          <div>
-            <h2>Update Movie</h2>
+          <div className="save-wrapper">
+            <h2>Update {movie.title}</h2>
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
