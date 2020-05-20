@@ -34,9 +34,13 @@ const UpdateMovie = (props) => {
                formValue = parseInt(formValue, 10)
           }
 
-          setMovie({
-               ...movie,
-               [event.target.name]: formValue
+          if(event.target.name === 'stars') {
+               formValue = formValue.split(',')
+          }
+
+           setMovie({
+                ...movie, 
+                [event.target.name]: formValue
           })
      }
 
@@ -50,8 +54,8 @@ const UpdateMovie = (props) => {
                     //set the response to state
                     const newMovieList = movieList.filter(singleMovie => `${singleMovie.id}` !== response.data.id)
                     setMovieList(newMovieList)
-                    push(`/movies/${id}`)
-
+                    setMovie(initialMovie)
+                    push(`/`)
                })
      }
 
