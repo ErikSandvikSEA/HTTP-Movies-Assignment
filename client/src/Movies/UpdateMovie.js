@@ -11,6 +11,7 @@ const initialMovie = {
 }
 
 const UpdateMovie = (props) => {
+     const {movieList, setMovieList } = props
      const [movie, setMovie] = useState(initialMovie)
      const { id } = useParams()
      const { push } = useHistory()
@@ -23,6 +24,7 @@ const UpdateMovie = (props) => {
                     setMovie(response.data)
                })
      }, [id])
+
 
 
      const handleChange = event => {
@@ -40,8 +42,17 @@ const UpdateMovie = (props) => {
 
      const handleSubmit = e => {
           e.preventDefault()
+          //put request
           axios
-               .get(`http:localhost:5000/movies/${id}`)
+               .put(`http://localhost:5000/api/movies/${id}`, movie)
+               .then(response => {
+                    console.log(response.data)
+                    //set the response to state
+                    const newMovieList = movieList.filter(singleMovie => `${singleMovie.id}` !== response.data.id)
+                    setMovieList(newMovieList)
+                    push(`/movies/${id}`)
+
+               })
      }
 
      return (
