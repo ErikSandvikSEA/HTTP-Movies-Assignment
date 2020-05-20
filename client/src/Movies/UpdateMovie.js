@@ -59,6 +59,8 @@ const UpdateMovie = (props) => {
                })
      }
 
+     
+
      return (
           <div className="save-wrapper">
             <h2>Update {movie.title}</h2>

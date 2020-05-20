@@ -19,6 +19,19 @@ function Movie({ addToSavedList }) {
       .catch((err) => console.log(err.response));
   };
 
+  const deleteMovie = event => {
+    event.preventDefault()
+    axios
+      .delete(`http://localhost:5000/api/movies/${movie.id}`)
+      .then(response => {
+        // console.log(response)
+        setMovie(response.data)
+        history.push('/')
+      })
+      .catch(err => console.log(err))
+  }
+
+
   const saveMovie = () => {
     addToSavedList(movie);
   };
@@ -39,6 +52,7 @@ function Movie({ addToSavedList }) {
           Save
       </div>
         <button className="update-button" onClick={() => history.push(`/update-movie/${movie.id}`)}>Update Movie</button>
+        <button className='delete-button' onClick={deleteMovie}>Delete Movie</button>
         
       </div>
     </div>
